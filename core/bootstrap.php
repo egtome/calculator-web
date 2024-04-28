@@ -13,8 +13,7 @@ if (DEBUG) {
     ini_set('display_startup_errors', 0);
 }
 
-// Sessions
-session_start();
+SessionService::startSession();
 
 $target = !empty($_GET['target']) ? RouteService::validateTarget($_GET['target']) : [];
 $routeControllerFactroy = new RouteControllerFactory($target);

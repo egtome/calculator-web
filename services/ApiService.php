@@ -2,7 +2,7 @@
 
 class ApiService {
 
-    public static function request(string $endpoint, array $params = [], string $method = 'POST'): array
+    public static function request(string $endpoint, array $params, string $method = 'POST'): array
     {
         $responseArray = [];
 
@@ -22,28 +22,42 @@ class ApiService {
         ];
 
         // Check Method
-        if ($method === 'POST') {
-            curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-            $headers[] = "Content-Length: " . strlen($data);            
-        } elseif ($method === 'GET' && !empty($params)){
-            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET' );
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-            $headers[] = "Content-Length: " . strlen($data); 
+        switch ($method) {
+            case 'POST';
+                curl_setopt($curl, CURLOPT_POST, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                $headers[] = "Content-Length: " . strlen($data); 
+            break;
+            case 'GET';
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                $headers[] = "Content-Length: " . strlen($data); 
+            break;
+            case 'DELETE';
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
+            break;
+            default:
+                self::forceLoginWithErrorMessage('Internal Error');      
         }
 
+        // Set Headers
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
         $response = curl_exec($curl);
+        $responseCode = (int)curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-        if (!empty($response)) {
-            $response = json_decode($response, true);
-            $responseArray['http_code'] = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-            $responseArray['response'] = $response;
-        } else {
-            self::requestFailed();
+        if ($responseCode >= 400) {
+            if ($responseCode === 402) {
+                self::showErrorMessage('Not enough balance to perform operation');
+            } else {
+                self::forceLoginWithErrorMessage('Session Expired');
+            }
         }
 
+        $response = json_decode($response, true);
+        $responseArray['http_code'] = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $responseArray['response'] = $response;        
+        
         curl_close($curl); 
         
         return $responseArray;
@@ -143,6 +157,13 @@ class ApiService {
 
         return $result;
     }
+
+    public static function requestDeleteUserOperation(int $userOperationId)
+    {
+        $result = self::request('user/operation/' . $userOperationId, [], 'DELETE');
+
+        return $result;
+    }    
     
     public static function requestRandomString(int $num, int $len, int $digits, int $unique, int $upper, int $lower)
     {
@@ -191,11 +212,19 @@ class ApiService {
         return $cost;
     }
 
-    private static function requestFailed()
+    private static function forceLoginWithErrorMessage(string $message)
     {
         SessionService::destroySession();
+        SessionService::startSession();
+        SessionService::storeData('error', ['login_error' => $message]);
+
         header("Location: /login");
     }
+
+    private static function showErrorMessage(string $message)
+    {
+        SessionService::storeData('balance_error', $message);
+    }    
 
     private static function updateUserBalance($requestResult)
     {

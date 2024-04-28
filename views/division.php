@@ -1,6 +1,6 @@
 <div id="addition-operation" style="margin-left: 20px; margin-top: 7%; text-align:center;">
   <h4 class="mb-3">Division Operation - Cost: <?= $params['operation_cost'] ?></h4>
-  <form class="needs-validation" novalidate method="POST">
+  <form class="needs-validation" novalidate method="POST" onsubmit="return validateForm()">
     <div class="row gy-3">
 
       <div class="col-md-6">
@@ -23,3 +23,18 @@
     <button class="w-100 btn btn-primary btn-lg" type="submit">Request Operation</button>  
   </form>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  function validateForm() {
+    let valueB = $('#value-b').val();
+
+    if (valueB == 0) {
+      alert('You cannot divide by zero.');
+      
+      return false;
+    }
+    
+    return true;
+  }
+</script>

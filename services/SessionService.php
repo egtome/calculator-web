@@ -17,6 +17,11 @@ class SessionService {
         unset($_SESSION[$key]);
     }
 
+    public static function startSession()
+    {
+        session_start();
+    }    
+
     public static function destroySession()
     {
         session_destroy();

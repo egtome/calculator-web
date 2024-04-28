@@ -6,7 +6,6 @@ class DashboardController extends Controller {
     {
         $userOperations = ApiService::getUserOperations();
         $operationNames = ApiService::getOperationNames();
-
         $userOperations = !empty($userOperations['response']['data']['data']) ? $userOperations['response']['data']['data'] : [];
         
         $params = [
@@ -105,7 +104,15 @@ class DashboardController extends Controller {
             header("Location: /dashboard");
         }
         $this->renderView('dashboard', $params, 'random-string');
-    }    
-
+    }
+    
+    public function deleteUSerOperation()
+    {
+        if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
+            ApiService::requestDeleteUserOperation($_GET['id']);
+        }
+        
+        header("Location: /dashboard");
+    }   
 
 }
