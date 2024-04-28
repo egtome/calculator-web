@@ -39,10 +39,10 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="/dashboard/addition" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Addition</a></li>
             <li><a href="/dashboard/substraction" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Substraction</a></li>
-            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Multiplication</a></li>
-            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Division</a></li>
-            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Square Root</a></li>
-            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Random String</a></li>
+            <li><a href="/dashboard/multiplication" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Multiplication</a></li>
+            <li><a href="/dashboard/division" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Division</a></li>
+            <li><a href="/dashboard/squareRoot" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Square Root</a></li>
+            <li><a href="/dashboard/randomString" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Random String</a></li>
           </ul>
         </div>
       </li>

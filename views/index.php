@@ -20,10 +20,15 @@
                 foreach ($params['user_operations'] as $userOperation) {
                     $date = new DateTime($userOperation['created_at']);
                     $formattedDate = $date->format('Y-m-d H:i:s');
+                    $operationResponse = $userOperation['operation_response'];
+                    if (strpos($operationResponse, '"') !== false) {
+                        $operationResponse = json_decode($operationResponse);
+                        $operationResponse = str_replace("\n", '<br/>', $operationResponse) ;
+                    }
                     echo '<tr>';
                     echo '<td>' . $params['operation_names'][$userOperation['operation_id']] . '</td>';
                     echo '<td>' . $userOperation['amount'] . '</td>';
-                    echo '<td>' . $userOperation['operation_response'] . '</td>';
+                    echo '<td>' . $operationResponse . '</td>';
                     echo '<td>' . $formattedDate . '</td>';
                     echo '</tr>';
                 }

@@ -101,7 +101,66 @@ class ApiService {
         self::updateUserBalance($result);
 
         return $result;
-    }    
+    }
+    
+    public static function requestMultiplication(int $value_a, int $value_b)
+    {
+        $params = [
+            'value_a' => $value_a,
+            'value_b' => $value_b,
+        ];
+
+        $result = self::request('user/operation/multiplication', $params);
+
+        self::updateUserBalance($result);
+
+        return $result;
+    }
+    
+    public static function requestDivision(int $value_a, int $value_b)
+    {
+        $params = [
+            'value_a' => $value_a,
+            'value_b' => $value_b,
+        ];
+
+        $result = self::request('user/operation/division', $params);
+
+        self::updateUserBalance($result);
+
+        return $result;
+    }
+    
+    public static function requestSquareRoot(int $value_a)
+    {
+        $params = [
+            'value_a' => $value_a,
+        ];
+
+        $result = self::request('user/operation/square-root', $params);
+
+        self::updateUserBalance($result);
+
+        return $result;
+    }
+    
+    public static function requestRandomString(int $num, int $len, int $digits, int $unique, int $upper, int $lower)
+    {
+        $params = [
+            'num' => $num,
+            'len' => $len,
+            'digits' => $digits,
+            'unique' => $unique,
+            'upperalpha' => $upper,
+            'loweralpha' => $lower,
+        ];
+
+        $result = self::request('user/operation/random-string', $params);
+
+        self::updateUserBalance($result);
+
+        return $result;
+    }     
 
     public static function getOperationNames()
     {
