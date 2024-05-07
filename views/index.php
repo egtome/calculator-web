@@ -4,6 +4,7 @@
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div id="index" style="margin-left: 20px; margin-top: 10%;  overflow-y: auto; overflow-x: hidden; height: 90%; width: 100%">
 
@@ -39,7 +40,7 @@
                     echo '<td>' . $userOperation['amount'] . '</td>';
                     echo '<td>' . $operationResponse . '</td>';
                     echo '<td>' . $formattedDate . '</td>';
-                    echo "<td><a class='btn btn-danger delete-btn' onClick='confirmDelete();' href='/dashboard/deleteUSerOperation?id=$operationId'>delete</a></td>";
+                    echo "<td><a class='btn btn-danger delete-btn' onClick='confirmDelete();' href='/operations/deleteUSerOperation?id=$operationId'>delete</a></td>";
                     echo '</tr>';
                 }
             ?>

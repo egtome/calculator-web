@@ -1,18 +1,16 @@
 <div id="random-string-operation" style="margin-left: 20px; margin-top: 7%; text-align:center;">
-  <h4 class="mb-3">Square Root Operation - Cost: <?= $params['operation_cost'] ?></h4>
+  <h4 class="mb-3">Random String Operation - Cost: <?= $params['operation_cost'] ?></h4>
   <form class="needs-validation" novalidate method="POST" onsubmit="return validateForm()">
-    <div class="row gy-3">
-
-      <div class="col-md-6">
+      <div>
         <label for="num" class="form-label">Number of strings to generate</label>
-        <input type="text" class="form-control" id="num" name="num" placeholder="" pattern="[0-9]+" min="1" max="3" required>
+        <input type="text" class="form-control" id="num" name="num" placeholder="" required>
         <div class="invalid-feedback">
           Number of strings to generate is required
         </div>
       </div>
-      <div class="col-md-6">
+      <div>
         <label for="len" class="form-label">Length of strings to generate</label>
-        <input type="text" class="form-control" id="len" name="len" placeholder="" pattern="[0-9]+" min="1" max="8" required>
+        <input type="text" class="form-control" id="len" name="len" placeholder="" required>
         <div class="invalid-feedback">
           Length of strings to generate is required
         </div>
@@ -54,10 +52,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
   function validateForm() {
+    let num = $('#num').val();
+    let len = $('#len').val();    
     let digits = $('#digits').prop('checked');
     let upper = $('#upper').prop('checked');
     let lower = $('#lower').prop('checked');
     let atLeastOneChecked = digits || upper || lower;
+    let numberRegex = /^-?\d*\.?\d+$/;
+
+    if (!numberRegex.test(num) || !numberRegex.test(len)) {
+      alert('Please enter numbers only');
+      
+      return false;
+    } else {
+      if (num <= 0 || num > 10 || len <= 0 || len > 10) {
+        alert('num and len values must be greater than 0 and less or equal than 10');
+      
+        return false;
+      }      
+    }    
 
     if (!atLeastOneChecked) {
       alert('Please select at least one option: Digits, Uppercase strings or Lowercase strings');
@@ -67,4 +80,8 @@
     
     return true;
   }
+
+  $(document).ready(function() {
+    $("title").append(' - Random String');
+  });  
 </script>

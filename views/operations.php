@@ -6,11 +6,12 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Calculator</title>
+    <title>Calculator Web - By Gino Tome</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link href="/<?= ASSETS_PATH ?>/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/<?= ASSETS_PATH ?>styles.css" rel="stylesheet">
 
@@ -24,7 +25,7 @@
 <main class="d-flex flex-nowrap">
 
   <div class="flex-shrink-0 p-3" style="width: 280px;">
-    <a href="/dashboard" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+    <a href="/operations" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
       <span class="fs-5 fw-semibold">Your Operations</span><br/>
     </a>
 
@@ -37,12 +38,12 @@
         </button>
         <div class="collapse show" id="home-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="/dashboard/addition" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Addition</a></li>
-            <li><a href="/dashboard/substraction" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Substraction</a></li>
-            <li><a href="/dashboard/multiplication" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Multiplication</a></li>
-            <li><a href="/dashboard/division" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Division</a></li>
-            <li><a href="/dashboard/squareRoot" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Square Root</a></li>
-            <li><a href="/dashboard/randomString" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Random String</a></li>
+            <li><a href="/operations/addition" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Addition</a></li>
+            <li><a href="/operations/substraction" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Substraction</a></li>
+            <li><a href="/operations/multiplication" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Multiplication</a></li>
+            <li><a href="/operations/division" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Division</a></li>
+            <li><a href="/operations/squareRoot" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Square Root</a></li>
+            <li><a href="/operations/randomString" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Random String</a></li>
           </ul>
         </div>
       </li>

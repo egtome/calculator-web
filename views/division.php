@@ -1,19 +1,17 @@
-<div id="addition-operation" style="margin-left: 20px; margin-top: 7%; text-align:center;">
+<div id="division-operation" style="margin-left: 20px; margin-top: 7%; text-align:center;">
   <h4 class="mb-3">Division Operation - Cost: <?= $params['operation_cost'] ?></h4>
   <form class="needs-validation" novalidate method="POST" onsubmit="return validateForm()">
-    <div class="row gy-3">
-
-      <div class="col-md-6">
+      <div>
         <label for="value-a" class="form-label">Value A</label>
-        <input type="text" class="form-control" id="value-a" name="value_a" placeholder="" pattern="[0-9]+" required>
+        <input type="text" class="form-control" id="value-a" name="value_a" placeholder="" required>
         <div class="invalid-feedback">
           Value A is required
         </div>
       </div>
-
-      <div class="col-md-6">
+      <h3>&div;</h3>
+      <div>
         <label for="value-b" class="form-label">Value B</label>
-        <input type="text" class="form-control" id="value-b" name="value_b" placeholder="" pattern="[0-9]+" min="1" required>
+        <input type="text" class="form-control" id="value-b" name="value_b" placeholder="" required>
         <div class="invalid-feedback">
           Value B is required
         </div>
@@ -23,18 +21,28 @@
     <button class="w-100 btn btn-primary btn-lg" type="submit">Request Operation</button>  
   </form>
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
   function validateForm() {
+    let valueA = $('#value-a').val();
     let valueB = $('#value-b').val();
+    let numberRegex = /^-?\d*\.?\d+$/;
 
-    if (valueB == 0) {
-      alert('You cannot divide by zero.');
+    if (!numberRegex.test(valueA) || !numberRegex.test(valueB)) {
+      alert('Please enter numbers only');
       
       return false;
+    } else {
+      if (valueB == 0) {
+        alert('You cannot divide by zero.');
+      
+        return false;
+      }      
     }
     
     return true;
   }
+  $(document).ready(function() {
+    $("title").append(' - Division');
+  });  
 </script>

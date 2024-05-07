@@ -5,7 +5,7 @@ class UserController extends Controller {
     public function index()
     {
         if (AuthService::isUserAuthenticated()) {
-            header("Location: /dashboard");
+            header("Location: /operations");
         }
         $errors = SessionService::getData('error');
         $params = !empty($errors) ? $errors : [];
@@ -30,7 +30,7 @@ class UserController extends Controller {
         $response = ApiService::request('user/login', $requestParams);
 
         if (AuthService::authenticateUser($response)) {
-            header("Location: /dashboard");
+            header("Location: /operations");
         }
 
         header("Location: /login");

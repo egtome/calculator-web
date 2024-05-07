@@ -1,6 +1,6 @@
 <?php
 
-class DashboardController extends Controller {
+class OperationsController extends Controller {
 
     public function index()
     {
@@ -12,7 +12,7 @@ class DashboardController extends Controller {
             'operation_names' => $operationNames,
             'user_operations' => $userOperations,
         ];        
-        $this->renderView('dashboard', $params, 'index');
+        $this->renderView('operations', $params, 'index');
     }
 
     public function addition()
@@ -23,9 +23,9 @@ class DashboardController extends Controller {
 
         if (isset($_POST['value_a']) && is_numeric($_POST['value_a']) && isset($_POST['value_b']) && is_numeric($_POST['value_b'])) {
             ApiService::requestAddition($_POST['value_a'], $_POST['value_b']);
-            header("Location: /dashboard");
+            header("Location: /operations");
         }
-        $this->renderView('dashboard', $params, 'addition');
+        $this->renderView('operations', $params, 'addition');
     }
 
     public function substraction()
@@ -36,9 +36,9 @@ class DashboardController extends Controller {
 
         if (isset($_POST['value_a']) && is_numeric($_POST['value_a']) && isset($_POST['value_b']) && is_numeric($_POST['value_b'])) {
             ApiService::requestSubstraction($_POST['value_a'], $_POST['value_b']);
-            header("Location: /dashboard");
+            header("Location: /operations");
         }
-        $this->renderView('dashboard', $params, 'substraction');
+        $this->renderView('operations', $params, 'substraction');
     }
     
     public function multiplication()
@@ -49,9 +49,9 @@ class DashboardController extends Controller {
 
         if (isset($_POST['value_a']) && is_numeric($_POST['value_a']) && isset($_POST['value_b']) && is_numeric($_POST['value_b'])) {
             ApiService::requestMultiplication($_POST['value_a'], $_POST['value_b']);
-            header("Location: /dashboard");
+            header("Location: /operations");
         }
-        $this->renderView('dashboard', $params, 'multiplication');
+        $this->renderView('operations', $params, 'multiplication');
     }
     
     public function division()
@@ -62,9 +62,9 @@ class DashboardController extends Controller {
 
         if (isset($_POST['value_a']) && is_numeric($_POST['value_a']) && isset($_POST['value_b']) && is_numeric($_POST['value_b']) && $_POST['value_b'] > 0) {
             ApiService::requestDivision($_POST['value_a'], $_POST['value_b']);
-            header("Location: /dashboard");
+            header("Location: /operations");
         }
-        $this->renderView('dashboard', $params, 'division');
+        $this->renderView('operations', $params, 'division');
     }
     
     public function squareRoot()
@@ -75,9 +75,9 @@ class DashboardController extends Controller {
 
         if (isset($_POST['value_a']) && is_numeric($_POST['value_a']) && $_POST['value_a'] >= 0) {
             ApiService::requestSquareRoot($_POST['value_a']);
-            header("Location: /dashboard");
+            header("Location: /operations");
         }
-        $this->renderView('dashboard', $params, 'square-root');
+        $this->renderView('operations', $params, 'square-root');
     }
     
     public function randomString()
@@ -101,9 +101,9 @@ class DashboardController extends Controller {
 
             ApiService::requestRandomString($num, $len, $digits, $unique, $upper, $lower);
             
-            header("Location: /dashboard");
+            header("Location: /operations");
         }
-        $this->renderView('dashboard', $params, 'random-string');
+        $this->renderView('operations', $params, 'random-string');
     }
     
     public function deleteUSerOperation()
@@ -112,7 +112,7 @@ class DashboardController extends Controller {
             ApiService::requestDeleteUserOperation($_GET['id']);
         }
         
-        header("Location: /dashboard");
+        header("Location: /operations");
     }   
 
 }

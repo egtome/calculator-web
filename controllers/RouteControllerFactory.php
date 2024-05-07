@@ -15,10 +15,10 @@ class RouteControllerFactory {
         $action = !empty($this->target[1]) ? $this->target[1] : 'index';
         switch ($target) {
             case '':
-            case 'dashboard':
+            case 'operations':
                     AuthService::authenticateRequest();
-                    $dashboardController = new DashboardController();
-                    $this->routeToAction($dashboardController, $action);
+                    $operationsController = new OperationsController();
+                    $this->routeToAction($operationsController, $action);
                 break;
             case 'login':
                 $userController = new UserController();

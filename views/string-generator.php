@@ -1,4 +1,4 @@
-<div id="addition-operation" style="margin-left: 10px; margin-top: 7%;">
+<div id="string-generator" style="margin-left: 10px; margin-top: 7%;">
   <h4 class="mb-3">Addition Operation</h4>
   <form class="needs-validation" novalidate>
     <div class="my-3">
